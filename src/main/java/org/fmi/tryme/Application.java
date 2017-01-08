@@ -24,6 +24,7 @@ public class Application extends WebSecurityConfigurerAdapter {
 				.antMatchers("/login**").permitAll()//
 				.antMatchers("/connect**").permitAll()//
 				.antMatchers("/").permitAll()//
+				.antMatchers("/home").permitAll()//
 				.anyRequest().authenticated();
 
 		http.formLogin()//
