@@ -1,5 +1,5 @@
-mainApp.controller('testModuleCtrl', ['$scope', '$q', '$http', 'config', function($scope, $q, $http, config) {
-    var categoriesUrl = config.baseApiURL.concat("/tests/categories/");
+mainApp.controller('categoriesModuleCtrl', ['$scope', '$q', '$http', 'config', function($scope, $q, $http, config) {
+    var categoriesUrl = config.baseApiURL.concat("tests/categories/");
     
     $scope.getCategoriesRequest = function() {
         var deferred = $q.defer();
@@ -8,9 +8,9 @@ mainApp.controller('testModuleCtrl', ['$scope', '$q', '$http', 'config', functio
             method : "GET",
             url : categoriesUrl,
             cache: false
-        }).success(function(data) {
+        }).then(function successCallback(data) {
             deferred.resolve(data);
-        }).error(function(data) {
+        }, function errorCallback(data) {
             deferred.reject(data);
         });
 
@@ -18,9 +18,10 @@ mainApp.controller('testModuleCtrl', ['$scope', '$q', '$http', 'config', functio
     };
   
     $scope.categories = {};
-    $scope.testModuleInit = function () {
+    $scope.categoriesModuleInit = function () {
         $scope.getCategoriesRequest().then(function(data) {
-            for(var i=0;i<data.length;i++){
+            data = data.data;
+        	for(var i=0;i<data.length;i++){
         	    $scope.categories.push(
         		{
         			id: data.id,

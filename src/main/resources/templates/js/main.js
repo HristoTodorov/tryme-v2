@@ -1,8 +1,6 @@
 var mainApp = angular.module("mainApp", []);
-function EndUserSession (UserInfo) {
 
-};
-mainApp.constant('config', (function(){
+mainApp.constant('config', (function() {
     var apiVersion = 'v1.0';
 
     return {
