@@ -1,12 +1,13 @@
 mainApp.controller('beginTestModuleCtrl', ['$scope', '$q', '$http', 'config', function($scope, $q, $http, config) {
-    var requestTestUrl = config.baseApiURL.concat("tests/categories/");
-    
+    var requestTestUrl = config.baseApiURL.concat("tests/{testId}");
+    $scope.description = "";
+    $scope.userName = "";
     $scope.getTestRequest = function() {
         var deferred = $q.defer();
 
         $http({
             method : "GET",
-            url : categoriesUrl,
+            url : requestTestUrl,
             cache: false
         }).then(function successCallback(data) {
             deferred.resolve(data);
@@ -17,17 +18,19 @@ mainApp.controller('beginTestModuleCtrl', ['$scope', '$q', '$http', 'config', fu
         return deferred.promise;
     };
 
-    $scope.categories = [];
+    $scope.questions = [];
 
     $scope.beginTestModuleInit = function () {
-        $scope.getCategoriesRequest().then(function(data) {
-            data = data.data;
+        $scope.userName = sessionStorage.getItem("userName");
+        $scope.getTestRequest(sessionStorage.getItem("testId")).then(function(data) {
+            $scope.description = data.data.description;
+            data = data.data.questions;
         	for(var i=0;i<data.length;i++){
-        	    $scope.categories.push(
+        	    $scope.questions.push(
         		{
         			id: data[i].id,
-        			name: data[i].name,
-        			testCount: data[i].testCount
+        			subject: data[i].text,
+        			answers: data[i].answers
         		});
             }
         }, function(error) {
