@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/test")
-public class TestController {
+public class TestResourceController {
 
 	@RequestMapping(method=RequestMethod.GET)
 	public String makeTest() {
