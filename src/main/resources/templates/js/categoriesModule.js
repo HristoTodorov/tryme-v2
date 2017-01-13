@@ -1,4 +1,4 @@
-mainApp.controller('categoriesModuleCtrl', ['$scope', '$q', '$http', 'config', function($scope, $q, $http, $location, config) {
+mainApp.controller('categoriesModuleCtrl', ['$scope', '$q', '$http', 'location', 'config', function($scope, $q, $http, $location, config) {
     var categoriesUrl = config.baseApiURL.concat("tests/categories/");
     var subCategoryUrl = config.baseApiURL.concat("tests/categories/{category}/descriptions");
  
