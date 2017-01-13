@@ -22,10 +22,10 @@
         <link rel="stylesheet" type="text/css" href="../css/tests.css" />
         <script src="../js/navbar.js"></script>
         <script src="../js/main.js"></script>
-        <script src="../js/categoriesModule.js"></script>
+        <script src="../js/beginTestModule.js"></script>
     </head>
     <body ng-app="mainApp" ng-controller="MainCtrl">
-        <div class="container" id="page" ng-controller="categoriesModuleCtrl" ng-init="categoriesModuleInit()">
+        <div class="container" id="page" ng-controller="beginTestModuleCtrl" ng-init="beginTestModuleInit()">
             <!-- ======================== NAVBAR ======================== -->
             <div class="navWrapper navbar-fixed-top">
                 <div class="upper">
@@ -45,7 +45,7 @@
                             <li><a href="scoreboard.html">Класации</a></li>
                         </ul>
                         <form class="navbar-form navbar-right">
-                            <a id="welcomebtn" class="btn btn-success" href="/"> Здравей, {{userName}} !</a> 
+                            <a id="welcomebtn" class="btn btn-success" href="Home.html" ng-show="isLoggedIn"> Здравей, {{user.name}} !</a> 
                         </form>
                     </div>
                 </nav>
@@ -60,17 +60,13 @@
                         <span class="glyphicon glyphicon-exclamation-sign"
                             aria-hidden="true"></span>
                     </div>
-
-                    <!-- Main category. -->
-                    <select class="form-control" id="category" ng-model="testCategory" ng-change="mainCategoryListener()">
+                    <select class="form-control" id="permet">
                         <option ng-repeat="category in categories" value="{{category.id}}">{{category.name}}</option>
                     </select>
-
-                    <!-- Sub category. -->
-                    <select class="form-control" id="subCategory" ng-model="testSubCategory" ng-hide="!isMainCategorySelected" ng-change="beginTest()">
-                        <option ng-repeat="subCategory in subCategories" value="{{subCategory.id}}">{{subCategory.subject}}</option>
-                    </select>
-
+                    <br />
+                    <div id="starttd">
+                        <a class="btn btn-success start" href="start-test.html">Започни тест ...</a>
+                    </div>
                     <br />
                 </div>
             </div>
