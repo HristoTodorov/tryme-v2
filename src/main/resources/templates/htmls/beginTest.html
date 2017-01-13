@@ -54,20 +54,14 @@
             <!-- ======================== CONTENT ======================== -->
             <div id="content" class="content">
                 <div id="testspage">
-                    <label for="permet">Избери категория:</label>
-                    <div id="validationErrors" class="alert alert-danger" role="alert"
-                        style="display: none">
-                        <span class="glyphicon glyphicon-exclamation-sign"
-                            aria-hidden="true"></span>
-                    </div>
-                    <select class="form-control" id="permet">
-                        <option ng-repeat="category in categories" value="{{category.id}}">{{category.name}}</option>
-                    </select>
-                    <br />
-                    <div id="starttd">
-                        <a class="btn btn-success start" href="start-test.html">Започни тест ...</a>
+                    <label for="permet">{{description}}</label>
+                    <div class="list-group" ng-repeat="question in questions">
+                        <div class="list-group" ng-repeat="answer in question.answers">
+                            <button type="button" class="list-group-item list-group-item-action">{{answer}}</button>
+                        </div>
                     </div>
                     <br />
+                    
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-mainApp.controller('categoriesModuleCtrl', ['$scope', '$q', '$http', 'location', 'config', function($scope, $q, $http, $location, config) {
+mainApp.controller('categoriesModuleCtrl', ['$scope', '$q', '$http', '$location', 'config', function($scope, $q, $http, $location, config) {
     var categoriesUrl = config.baseApiURL.concat("tests/categories/");
     var subCategoryUrl = config.baseApiURL.concat("tests/categories/{category}/descriptions");
  
@@ -65,10 +65,11 @@ mainApp.controller('categoriesModuleCtrl', ['$scope', '$q', '$http', 'location',
     
 
     $scope.mainCategoryListener = function () {
-    	$scope.getSubCategory($testCategory).then(function(data) {
+    	$scope.getSubCategory($scope.testCategory).then(function(data) {
             data = data.data;
             var len = data.length;
             var i = 0;
+            $scope.subCategories = [];
             for (; i < len; i++) {
                 $scope.subCategories.push({
                     id: data[i].id,
@@ -83,7 +84,7 @@ mainApp.controller('categoriesModuleCtrl', ['$scope', '$q', '$http', 'location',
 
     $scope.beginTest = function () {
         sessionStorage.setItem("testId", $scope.testSubCategory);
-        $location.path("/test");
+        window.location.href = "/test";
     };
 
 }]);
